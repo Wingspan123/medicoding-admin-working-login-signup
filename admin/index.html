@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="brand">Dashboard</div>
+                <div class="actions">
+                    <button id="courses-btn">Courses</button>
+                    <button id="exams-btn">Exams</button>
+                    <button id="results-btn">Results</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" id="admin-dashboard">
+            <h1>Welcome to Admin Dashboard</h1>
+            <div class="add-question-container-welcome">
+                <button class="add-question-button" onclick="window.location.href='/question/screen/get-questions'">
+                    Add Question
+                </button>
+            </div>
+            <div class="admin-stats">
+                <div class="admin-stat" id="total-students">
+                    <h2>Total Students</h2>
+                    <p>100</p> 
+                </div>
+                <div class="admin-stat" id="total-teachers">
+                    <h2>Total Teachers</h2>
+                    <p>50</p> 
+                </div>
+                <div class="admin-stat" id="total-courses">
+                    <h2>Total Courses</h2>
+                    <p>20</p> 
+                </div>
+                <div class="admin-stat" id="total-questions">
+                    <h2>Total Questions</h2>
+                    <p>500</p> 
+                </div>
+            </div>
+            <div class="admin-actions">
+                <button class="btn" id="manage-users-btn">Manage Users</button>
+                <button class="btn" id="manage-courses-btn">Manage Courses</button>
+                <button class="btn" id="manage-exams-btn">Manage Exams</button>
+                <button class="btn" id="manage-questions-btn">Manage Questions</button>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/index.js"></script>
+</body>
+</html>

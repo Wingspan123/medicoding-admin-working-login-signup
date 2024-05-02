@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+
+        body,
+        div,
+        h1,
+        h2,
+        p,
+        ul,
+        li,
+        button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .navbar {
+            background: #333;
+            color: #fff;
+            padding: 15px 0;
+        }
+
+        .navbar .brand {
+            float: left;
+            padding: 15px 0;
+        }
+
+        .navbar .actions {
+            float: right;
+        }
+
+        .navbar button {
+            margin: 0 15px;
+            background: none;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 17px;
+            font-weight: 600;
+        }
+
+        .navbar button:hover {
+            color: #ddd;
+        }
+
+        .teacher-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .teacher-stat {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+
+        .teacher-stat h2 {
+            margin-bottom: 10px;
+        }
+
+        .teacher-stat p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Responsive styling */
+        @media(max-width: 800px) {
+            .teacher-stats {
+                flex-direction: column;
+            }
+
+            .teacher-stat {
+                margin-bottom: 20px;
+            }
+        }
+
+        .add-question-container-welcome {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        button.add-question-button {
+            padding: 7px;
+            border: none;
+            height: 50px;
+            width: 117px;
+            border-radius: 5px;
+            color: #ffffff;
+            background: #000000;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        table#questions-table {
+            border: solid 1px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="brand">Dashboard</div>
+                <div class="actions">
+                    <button id="courses-btn">Courses</button>
+                    <button id="exams-btn">Exams</button>
+                    <button id="results-btn">Results</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container" id="teacher-dashboard">
+            <div class="add-question-container-welcome">
+                <h1>Welcome to Teacher Dashboard</h1>
+                <button class="add-question-button" onclick="window.location.href='/question/screen/get-questions'">
+                    Add Question
+                </button>
+            </div>
+
+            <div class="teacher-stats">
+                <div class="teacher-stat" id="total-students">
+                    <h2>Total Students</h2>
+                    <p>100</p>
+                </div>
+                <div class="teacher-stat" id="total-courses">
+                    <h2>Total Courses</h2>
+                    <p>5</p>
+                </div>
+                <div class="teacher-stat" id="papers-per-course">
+                    <h2>Papers per Course</h2>
+                    <p>5</p>
+                </div>
+            </div>
+            <table id="questions-table">
+                <thead>
+                    <tr>
+                        <th>Question Text</th>
+                        <th>Option 1</th>
+                        <th>Option 2</th>
+                        <th>Option 3</th>
+                        <th>Option 4</th>
+                        <th>Correct Answer</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container" id="teacher-footer">
+        </div>
+    </footer>
+</body>
+
+<script>
+    fetch('/question/all-questions')
+        .then(response => response.json())
+        .then(questions => {
+            const tableBody = document.getElementById('questions-table').getElementsByTagName('tbody')[0];
+
+            questions.forEach(question => {
+                const newRow = tableBody.insertRow();
+
+                newRow.insertCell().innerText = question.question_text;
+                newRow.insertCell().innerText = question.option1;
+                newRow.insertCell().innerText = question.option2;
+                newRow.insertCell().innerText = question.option3;
+                newRow.insertCell().innerText = question.option4;
+                newRow.insertCell().innerText = question.correct_answer;
+                newRow.insertCell().innerText = question.marks;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
+</html>

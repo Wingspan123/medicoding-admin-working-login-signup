@@ -1,0 +1,45 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.teacher-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.teacher-stat {
+    text-align: center;
+}
+
+.teacher-stat p {
+    font-size: 1.5rem;
+}
+
+#papers-per-course ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+#papers-per-course ul li {
+    margin-bottom: 5px;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}

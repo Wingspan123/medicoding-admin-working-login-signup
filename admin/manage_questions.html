@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Questions</title>
+    <link rel="stylesheet" href="css/manage_questions.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="brand">Dashboard</div>
+                <div class="actions">
+                    <button id="courses-btn">Courses</button>
+                    <button id="exams-btn">Exams</button>
+                    <button id="results-btn">Results</button>
+                </div>
+            </div>
+        </nav>
+        </header>
+    <div class="container">
+        <h1>Manage Questions</h1>
+        <form id="add-question-form">
+            <label for="question">Question:</label>
+            <textarea id="question" name="question" rows="4" required></textarea>
+            <label for="options">Options:</label>
+            <div id="options">
+                <input type="text" name="option" placeholder="Option 1" required>
+                <input type="text" name="option" placeholder="Option 2" required>
+                <input type="text" name="option" placeholder="Option 3" required>
+                <input type="text" name="option" placeholder="Option 4" required>
+            </div>
+            <label for="correct-answer">Correct Answer:</label>
+            <select id="correct-answer" name="correct-answer" required>
+                <option value="" disabled selected>Select correct answer</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+                <option value="4">Option 4</option>
+            </select>
+            <label for="marks">Marks:</label>
+            <input type="number" id="marks" name="marks" min="1" required>
+            <button type="submit">Add Question</button>
+        </form>
+        <div id="question-list">
+        </div>
+    </div>
+    <script src="js/manage_questions.js"></script>
+</body>
+</html>

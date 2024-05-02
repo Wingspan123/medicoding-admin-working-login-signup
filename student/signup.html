@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Signup</title>
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" id="student-navbar">
+            <div class="container">
+                <div class="brand">Dashboard</div>
+                <div class="actions">
+                    <button id="courses-btn">Courses</button>
+                    <button id="exams-btn">Exams</button>
+                    <button id="results-btn">Results</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="signup-container">
+        <h1>Signup</h1>
+        <form id="signup-form" action="/auth/user/signup" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirmPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" id="mobile" name="mobile" required>
+            </div>
+            <input type="hidden" id="role" name="role" value="student">
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+
+    <script src="js/signup.js"></script>
+</body>
+
+</html>

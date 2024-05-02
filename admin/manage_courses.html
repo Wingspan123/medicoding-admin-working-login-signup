@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Courses</title>
+    <link rel="stylesheet" href="css/manage_courses.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="brand">Dashboard</div>
+                <div class="actions">
+                    <button id="courses-btn">Courses</button>
+                    <button id="exams-btn">Exams</button>
+                    <button id="results-btn">Results</button>
+                </div>
+            </div>
+        </nav>
+        </header>
+    <div class="container">
+        <h1>Manage Courses</h1>
+        <form id="add-course-form">
+            <label for="course-name">Course Name:</label>
+            <input type="text" id="course-name" name="course-name" required>
+            <button type="submit">Add Course</button>
+        </form>
+        <div id="course-list">
+        </div>
+    </div>
+    <script src="js/manage_courses.js"></script>
+</body>
+</html>

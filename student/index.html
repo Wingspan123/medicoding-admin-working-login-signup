@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Exam</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link custom CSS -->
+    <link rel="stylesheet" href="css/exams.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .nav-left {
+            flex: 1;
+        }
+
+        .nav-right {
+            display: flex;
+            justify-content: flex-end;
+            flex: 1;
+        }
+
+        header nav div button {
+            margin-right: 10px;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        #questionsContainer div {
+            margin-bottom: 20px;
+        }
+
+        .correct-answer {
+            background-color: green !important;
+            color: #ffffff
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="nav-left">
+                <button id="dashboard-btn" class="btn btn-primary">Dashboard</button>
+            </div>
+            <div class="nav-right">
+                <button id="courses-btn" class="btn btn-primary">Courses</button>
+                <button id="exams-btn" class="btn btn-primary">Exams</button>
+                <button id="results-btn" class="btn btn-primary">Results</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Take Exam</h1>
+            <form id="exam-form">
+                <div class="form-group">
+                    <label for="courses">Select course:</label>
+                    <select id="courses" name="courses" class="form-control" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="paper">Select paper type:</label>
+                    <select id="paper" name="paper" class="form-control" required>
+                        <option value="" disabled selected>Select paper type</option>
+                        <option value="paper1">paper1</option>
+                        <option value="paper2">paper2</option>
+                        <option value="paper3">paper3</option>
+                    </select>
+                </div>
+
+                <input type="submit" value="Take Exam" class="btn btn-primary">
+            </form>
+            <div id="questionsContainer"></div>
+            <button id="submitAnswers" class="btn btn-primary mt-3">Submit Answers</button>
+            <div id="result"></div>
+        </div>
+    </main>
+
+    <!-- Link Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/exams.js"></script>
+    <script>
+        window.onload = function () {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', '/question/courses', true);
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    let courses = JSON.parse(this.responseText);
+                    let select = document.getElementById('courses');
+                    select.innerHTML = '<option value="" disabled selected>Select courses</option>';
+                    for (let i = 0; i < courses.length; i++) {
+                        let opt = document.createElement('option');
+                        opt.value = courses[i].course_id;
+                        opt.innerHTML = courses[i].course_name;
+                        select.appendChild(opt);
+                    }
+                }
+            }
+            xhr.send();
+        };
+        let all_questions = null
+        document.getElementById('exam-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            document.getElementById('exam-form').style.display = "none";
+
+            let paper = document.getElementById('paper').value;
+            let course_id = document.getElementById('courses').value;
+
+            fetch('/question/exam-questions?paper=' + paper + '&course_id=' + course_id)
+                .then(response => response.json())
+                .then(data => {
+                    all_questions = data;
+                    let questionsContainer = document.getElementById('questionsContainer');
+                    questionsContainer.innerHTML = '';
+                    console.log(all_questions.length)
+                    data.forEach(function (question) {
+                        let questionDiv = document.createElement('div');
+
+                        let questionText = document.createElement('p');
+                        questionText.textContent = question.question_text;
+                        questionDiv.appendChild(questionText);
+
+
+                        // questionDiv.dataset.correctAnswer = question.correct_answer;
+                        questionDiv.dataset.marks = question.marks;
+
+                        // let correctAnswerParagraph = document.createElement('p');
+                        // correctAnswerParagraph.textContent = "Correct Answer: " + question.correct_answer;
+                        // questionDiv.appendChild(correctAnswerParagraph);
+
+                        for (let i = 1; i <= 4; i++) {
+                            let optionLabel = document.createElement('label');
+                            let optionInput = document.createElement('input');
+                            optionInput.type = 'radio';
+                            optionInput.name = 'question' + question.question_id;
+                            optionInput.value = `option${i}`;
+                            optionLabel.appendChild(optionInput);
+                            optionLabel.appendChild(document.createTextNode(question['option' + i]));
+                            questionDiv.appendChild(optionLabel);
+                            questionDiv.appendChild(document.createElement('br'));
+                        }
+                        console.log(question);
+                        questionsContainer.appendChild(questionDiv);
+                    });
+
+
+                    questionsContainer.style.display = "block";
+
+                    document.getElementById('submitAnswers').style.display = "block";
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        const submitElement = document.getElementById('submitAnswers')
+        submitElement.style.display = "none";
+
+        submitElement.addEventListener('click', function () {
+            let questions = all_questions?.length;
+            let totalMarks = all_questions.reduce((a, b) => a + (b?.marks || 0), 0);
+            let marksObtained = 0;
+            let correctAnswers = 0;
+            let wrongAnswers = 0;
+
+            all_questions.forEach(function (question) {
+                let selectedOption = document.querySelector(`input[name="question${question.question_id}"]:checked`);
+                if (selectedOption) {
+                    let selectedValue = selectedOption.value;
+                    let correctValue = question.correct_answer;
+                    let marks = parseInt(question.marks);
+                    if (selectedValue === correctValue) {
+                        marksObtained += marks;
+                        correctAnswers++;
+                    } else {
+                        wrongAnswers++;
+                    }
+                    let options = document.querySelectorAll(`input[name="question${question.question_id}"]`);
+                    options.forEach(option => {
+                        option.disabled = true;
+                        if (option.value === correctValue) {
+                            option.parentNode.classList.add('correct-answer');
+                        }
+                    });
+                }
+            });
+
+            let percentage = ((marksObtained / totalMarks) * 100).toFixed(2);
+
+            let resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = `<p>Total Questions: ${questions} </p>`;
+            resultContainer.innerHTML += '<p>Total Marks: ' + totalMarks + '</p>';
+            resultContainer.innerHTML += '<p>Marks Obtained: ' + marksObtained + '</p>';
+            resultContainer.innerHTML += '<p>Correct Answers: ' + correctAnswers + '</p>';
+            resultContainer.innerHTML += '<p>Wrong Answers: ' + wrongAnswers + '</p>';
+            resultContainer.innerHTML += '<p>Percentage Score: ' + percentage + '%</p>';
+        });
+
+    </script>
+</body>
+
+</html>

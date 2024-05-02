@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Questions</title>
+    <link rel="stylesheet" href="css/manage_questions.css">
+</head>
+<style>
+    body,
+    div,
+    h1,
+    h2,
+    p,
+    ul,
+    li,
+    button {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .navbar {
+        background: #333;
+        color: #fff;
+        padding: 15px 0;
+    }
+
+    .navbar .brand {
+        float: left;
+        padding: 15px 0;
+    }
+
+    .navbar .actions {
+        float: right;
+    }
+
+    .navbar button {
+        margin: 0 15px;
+        background: none;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        margin-top: 17px;
+        font-weight: 600;
+    }
+
+    .navbar button:hover {
+        color: #ddd;
+    }
+
+    .teacher-stats {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+    }
+
+    .teacher-stat {
+        flex: 1;
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #333;
+    }
+
+    .teacher-stat h2 {
+        margin-bottom: 10px;
+    }
+
+    .teacher-stat p {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    @media(max-width: 800px) {
+        .teacher-stats {
+            flex-direction: column;
+        }
+
+        .teacher-stat {
+            margin-bottom: 20px;
+        }
+    }
+
+    .add-question-container-welcome {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    button.add-question-button {
+        padding: 7px;
+        border: none;
+        height: 50px;
+        width: 117px;
+        border-radius: 5px;
+        color: #ffffff;
+        background: #000000;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    body,
+    div,
+    h1,
+    h2,
+    p,
+    ul,
+    li,
+    button {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        width: 90%;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    button[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        height: 50px;
+        width: 200px;
+        border-radius: 7px;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #444;
+    }
+
+    /* Responsive styling */
+    @media(max-width: 800px) {
+        .container {
+            width: 95%;
+        }
+    }
+
+    form#question-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    select#correct-answer {
+        width: 104%;
+    }
+</style>
+
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="brand">Dashboard</div>
+                <div class="actions">
+                    <button id="courses-btn">Courses</button>
+                    <button id="exams-btn">Exams</button>
+                    <button id="results-btn">Results</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Manage Questions</h1>
+        <form id="question-form" action="/question/add-question" method="post">
+            <div class="form-group">
+                <label for="courses">Courses:</label>
+                <select id="courses" name="course_id" required>
+                    <!-- <option value="" disabled selected>Select courses</option>
+                    <option value="java">Java</option>
+                    <option value="medical coding">Medical Coding</option>
+                    <option value="digital marketing">Digital Marketing</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="paper">Paper Type:</label>
+                <select id="paper" name="paper" required>
+                    <option value="" disabled selected>Select paper type</option>
+                    <option value="paper1">paper1</option>
+                    <option value="paper2">paper2</option>
+                    <option value="paper3">paper3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="question-text">Question:</label>
+                <input type="text" id="question-text" name="question_text" required>
+            </div>
+            <div class="form-group">
+                <label for="option1">Option 1:</label>
+                <input type="text" id="option1" name="option1" required>
+            </div>
+            <div class="form-group">
+                <label for="option2">Option 2:</label>
+                <input type="text" id="option2" name="option2" required>
+            </div>
+            <div class="form-group">
+                <label for="option3">Option 3:</label>
+                <input type="text" id="option3" name="option3" required>
+            </div>
+            <div class="form-group">
+                <label for="option4">Option 4:</label>
+                <input type="text" id="option4" name="option4" required>
+            </div>
+            <div class="form-group">
+                <label for="correct_answer">Correct Answer:</label>
+                <select id="correct_answer" name="correct_answer" required>
+                    <option value="" disabled selected>Select correct answer</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="marks">Marks:</label>
+                <input type="number" id="marks" name="marks" min="1" required>
+            </div>
+            <button type="submit">Add Question</button>
+        </form>
+    </div>
+</body>
+<script>
+
+window.onload = function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/question/courses', true);
+    xhr.onload = function() {
+        if (this.status == 200) {
+            var courses = JSON.parse(this.responseText);
+            var select = document.getElementById('courses');
+            select.innerHTML = '<option value="" disabled selected>Select courses</option>';
+            for (var i = 0; i < courses.length; i++) {
+                var opt = document.createElement('option');
+                opt.value = courses[i].course_id;
+                opt.innerHTML = courses[i].course_name;
+                select.appendChild(opt);
+            }
+        }
+    }
+    xhr.send();
+};
+
+</script>
+
+</html>

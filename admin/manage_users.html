@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="css/manage_users.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="brand">Dashboard</div>
+                <div class="actions">
+                    <button id="courses-btn">Courses</button>
+                    <button id="exams-btn">Exams</button>
+                    <button id="results-btn">Results</button>
+                    <button id="students-btn">Students</button> 
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Users</h1>
+        <div class="user-stats">
+            <div class="user-stat" id="total-teachers">
+                <h2>Total Teachers</h2>
+                <p id="teachers-count">0</p>
+            </div>
+            <div class="user-stat" id="total-students">
+                <h2>Total Students</h2>
+                <p id="students-count">0</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="student-details-container" style="display: none;"> 
+        <h2>All Students</h2>
+        <div id="student-details"></div> 
+    </div>
+    <script src="js/manage_users.js"></script>
+</body>
+</html>
