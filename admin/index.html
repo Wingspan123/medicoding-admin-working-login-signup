@@ -5,6 +5,218 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="css/index.css">
+    <style>
+        /* CSS for Admin Dashboard */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.heading {
+    text-align: center;
+}
+
+/* Styling for header */
+header {
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for navigation bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    /* Add some padding to the sides */
+}
+
+/* Styling for brand */
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+    /* Make the brand text bold */
+}
+
+/* Styling for action buttons */
+.actions {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    /* Adjust the distance from the right */
+}
+
+.actions button {
+    background-color: transparent;
+    color: #fff;
+    padding: 8px 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.actions button:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+/* Styling for active button */
+.actions button.active {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+
+/* Styling for button container */
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+main {
+    padding: 20px 0;
+}
+
+.admin-dashboard {
+    text-align: center;
+}
+
+.admin-stats {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically*/
+    margin-bottom: 20px;
+    gap: 20px;
+
+    /* Add this line to create space between items */
+}
+
+.admin-stat {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    flex-basis: 400px;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+#total-students {
+    background: linear-gradient(165deg, #034ea3, #4b96e7);
+}
+
+#total-teachers {
+    background: linear-gradient(165deg, #bd33e793, #b505b5);
+}
+
+#total-courses {
+    background: linear-gradient(165deg, #31a504, #86f852);
+}
+
+#total-questions {
+    background: linear-gradient(165deg, #feb47b, #ff7e5f);
+}
+
+#total-students:hover {
+    background: linear-gradient(165deg, #024184, #387ab6);
+}
+
+#total-teachers:hover {
+    background: linear-gradient(165deg, #ac2edf93, #a704a7);
+}
+
+#total-courses:hover {
+    background: linear-gradient(165deg, #1f8c02, #71e35e);
+}
+
+#total-questions:hover {
+    background: linear-gradient(165deg, #e38252, #ff5c3e);
+}
+
+.admin-stat h2 {
+    margin-top: 0;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 401px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .actions {
+        display: none;
+    }
+
+    header {
+        width: 100%;
+    }
+
+    .admin-stat {
+        flex-basis: 100%;
+        /* Make the stats take full width */
+    }
+
+    .admin-stats {
+        flex-direction: column;
+        /* Stack stats vertically */
+        gap: 10px;
+        /* Reduce the gap between stats */
+    }
+
+    .admin-actions {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        align-items: center;
+        /* Center buttons horizontally */
+    }
+
+    .btn {
+        margin: 10px 0;
+        /* Add vertical margin to buttons */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .actions {
+        display: none;
+    }
+}
+
+    </style>
 </head>
 <body>
     <header>
@@ -22,12 +234,7 @@
 
     <main>
         <div class="container" id="admin-dashboard">
-            <h1>Welcome to Admin Dashboard</h1>
-            <div class="add-question-container-welcome">
-                <button class="add-question-button" onclick="window.location.href='/question/screen/get-questions'">
-                    Add Question
-                </button>
-            </div>
+            <h1 class="heading">Welcome to Admin Dashboard</h1>
             <div class="admin-stats">
                 <div class="admin-stat" id="total-students">
                     <h2>Total Students</h2>
@@ -37,6 +244,8 @@
                     <h2>Total Teachers</h2>
                     <p>50</p> 
                 </div>
+            </div>
+            <div class="admin-stats">
                 <div class="admin-stat" id="total-courses">
                     <h2>Total Courses</h2>
                     <p>20</p> 

@@ -5,11 +5,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Signup</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="css/signup.css">
+     <style>
+        * {
+    margin: 0;
+    padding: 0;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(165deg, #50d443, #004f7a);
+    background-position: center;
+    background-size: cover;
+}
+
+.form-box {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    background: transparent;
+    border: none;
+    border-radius: 20px;
+    backdrop-filter: blur(15px) brightness(80%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+
+.inputbox {
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+}
+
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1em;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+input:focus~label,
+input:valid~label {
+    top: -5px;
+}
+
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: #fff;
+}
+
+.inputbox ion-icon {
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+}
+
+.forget {
+    margin: -10px 0 17px;
+    font-size: 0.9em;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forget label input {
+    margin-right: 3px;
+}
+
+.forget a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.forget a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.register {
+    font-size: 0.9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.register p a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.register p a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 480px) {
+    body{
+        width: 100%;
+    }
+    .form-box {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        padding: 20px;
+    }
+    
+    .inputbox {
+        width: 100%;
+    }
+    
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+     </style>
 </head>
 
 <body>
-    <header>
+    <!--- <header>
         <nav class="navbar">
             <div class="container">
                 <div class="brand">Dashboard</div>
@@ -20,36 +172,52 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <h1>Teacher Signup</h1>
-        <form id="signup-form" action="/auth/user/signup" method="post">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirmPassword" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="mobile">Mobile Number:</label>
-                <input type="text" id="mobile" name="mobile" required>
-            </div>
-            <input type="hidden" id="role" name="role" value="teacher">
-            <button type="submit">Signup</button>
-        </form>
+    </header> -->
 
-    </div>
+    <body>
+        <section>
+            <div class="form-box">
+                <div class="form-value">
+                    <h2>Teacher Signup</h2>
 
+                    <form id="signup-form" action="/auth/user/signup" method="post">
+                        <div class="inputbox">
+                            <ion-icon name="person-outline"></ion-icon> 
+                            <input type="text" id="username" name="username" required>
+                            <label for="username">Username:</label>
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email:</label>
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="call-outline"></ion-icon> 
+                            <input type="text" id="mobile" name="mobile" required>
+                            <label for="mobile">Mobile Number:</label>
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <input type="password" id="password" name="password" required>
+                            <label for="password">Password:</label>
+                        </div>
+                        <div class="inputbox">
+                            <ion-icon name="key-outline"></ion-icon> 
+                            <input type="password" id="confirm-password" name="confirmPassword" required>
+                            <label for="confirm-password">Confirm Password:</label>
+                        </div>
+                       
+                        <input type="hidden" id="role" name="role" value="teacher">
+                        <button type="submit">Signup</button>
+                    
+                    <div class="register">
+                        <p>already have an account? <a href="#">Login</a></p>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </section>
+    </body>
     <script src="js/signup.js"></script>
 </body>
 
