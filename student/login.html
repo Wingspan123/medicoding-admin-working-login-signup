@@ -6,11 +6,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login</title>
     <link rel="stylesheet" href="css/login.css">
+    <style>
+/* login.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(165deg, #1a9ed3, #004f7a);
+    background-position: center;
+    background-size: cover;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-group {
+    margin: 30px 0;
+}
+
+label {
+    color: #fff;
+    font-size: 1em;
+    transition: 0.5s;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.register {
+    font-size: 0.9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+.register a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.register a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+    margin-top:-300px;
+}
+
+@media screen and (max-width: 480px) {
+    .login-container {
+        width: 100%;
+    }
+    .form-group {
+        width: 100%;
+    }
+    label {
+        font-size: 1.5em;
+    }
+}
+    </style>
+
 </head>
 
 <body>
     <div class="login-container">
-        <h1>Login</h1>
+        
+        <h1> Student Login</h1>
 
         <form id="login-form" action="/auth/user/login" method="post">
             <div class="form-group">
@@ -23,6 +123,9 @@
             </div>
             <input type="hidden" id="role" name="role" value="student">
             <button type="submit">Login</button>
+            <div class="register">
+                <p>Don't have an account? <a href="#">Sign Up</a></p>
+            </div>
         </form>
     </div>
 
