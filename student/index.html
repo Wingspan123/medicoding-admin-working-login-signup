@@ -298,53 +298,61 @@ header {
          };
          let all_questions = null
          document.getElementById('exam-form').addEventListener('submit', function (e) {
-             e.preventDefault();
- 
-             document.getElementById('exam-form').style.display = "none";
- 
-             let paper = document.getElementById('paper').value;
-             let course_id = document.getElementById('courses').value;
- 
-             fetch('/question/exam-questions?paper=' + paper + '&course_id=' + course_id)
-                 .then(response => response.json())
-                 .then(data => {
-                     all_questions = data;
-                     let questionsContainer = document.getElementById('questionsContainer');
-                     questionsContainer.innerHTML = '';
-                     console.log(all_questions.length)
-                     data.forEach(function (question) {
-                         let questionDiv = document.createElement('div');
-                         questionDiv.classList.add('question');
- 
-                         let questionText = document.createElement('p');
-                         questionText.innerHTML = ` ${question.question_text} <span class="marks">${question.marks} marks:</span>`;
-                         questionDiv.appendChild(questionText);
- 
-                         let optionsDiv = document.createElement('div');
-                         optionsDiv.classList.add('options');
-                         for (let i = 1; i <= 4; i++) {
-                             let optionLabel = document.createElement('label');
-                             let optionInput = document.createElement('input');
-                             optionInput.type = 'radio';
-                             optionInput.name = 'question' + question.question_id;
-                             optionInput.value = `option${i}`;
-                             optionLabel.appendChild(optionInput);
-                             optionLabel.appendChild(document.createTextNode(question['option' + i]));
-                             optionsDiv.appendChild(optionLabel);
-                         }
-                         questionDiv.appendChild(optionsDiv);
- 
-                         console.log(question);
-                         questionsContainer.appendChild(questionDiv);
-                     });
- 
- 
-                     questionsContainer.style.display = "block";
- 
-                     document.getElementById('submitAnswers').style.display = "block";
-                 })
-                 .catch(error => console.error('Error:', error));
-         });
+    e.preventDefault();
+
+    document.getElementById('exam-form').style.display = "none";
+
+    let paper = document.getElementById('paper').value;
+    let course_id = document.getElementById('courses').value;
+
+    fetch('/question/exam-questions?paper=' + paper + '&course_id=' + course_id)
+        .then(response => response.json())
+        .then(data => {
+            // Shuffle the questions array randomly
+            shuffleArray(data);
+
+            let questionsContainer = document.getElementById('questionsContainer');
+            questionsContainer.innerHTML = '';
+
+            data.forEach(function (question) {
+                let questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+
+                let questionText = document.createElement('p');
+                questionText.innerHTML = ` ${question.question_text} <span class="marks">${question.marks} marks:</span>`;
+                questionDiv.appendChild(questionText);
+
+                let optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('options');
+                for (let i = 1; i <= 4; i++) {
+                    let optionLabel = document.createElement('label');
+                    let optionInput = document.createElement('input');
+                    optionInput.type = 'radio';
+                    optionInput.name = 'question' + question.question_id;
+                    optionInput.value = `option${i}`;
+                    optionLabel.appendChild(optionInput);
+                    optionLabel.appendChild(document.createTextNode(question['option' + i]));
+                    optionsDiv.appendChild(optionLabel);
+                }
+                questionDiv.appendChild(optionsDiv);
+
+                questionsContainer.appendChild(questionDiv);
+            });
+
+            questionsContainer.style.display = "block";
+
+            document.getElementById('submitAnswers').style.display = "block";
+        })
+        .catch(error => console.error('Error:', error));
+});
+
+// Function to shuffle an array randomly
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
  
          const submitElement = document.getElementById('submitAnswers')
          submitElement.style.display = "none";
