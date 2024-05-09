@@ -10,10 +10,48 @@
     <!-- Link custom CSS -->
     <link rel="stylesheet" href="css/exams.css">
     <style>
+     /*   
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+   */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(16, 102, 189, 0.76); /* Semi-transparent light grey */
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Increase font size for question text */
+.question p {
+    font-size: 18px; /* Adjust font size as needed */
+}
+
+/* Increase font size for options label */
+.options label {
+    font-size: larger; /* Adjust font size as needed */
+}
+
+/* Increase radio button size */
+.options input[type="radio"] {
+    transform: scale(1.9); /* Increase radio button size */
+    margin-right: 10px; /* Adjust margin as needed */
+}
+
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+        }
+
         .container {
-            max-width: 600px;
-            margin: 0 auto;
+           /* max-width: 600px; */
+            margin: 20px auto;
             padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .nav-left {
@@ -41,11 +79,178 @@
         #questionsContainer div {
             margin-bottom: 20px;
         }
-
+       /*
         .correct-answer {
-            background-color: green !important;
+            background-color: rgb(93, 216, 93) !important;
             color: #ffffff
         }
+        */
+        .correct-answer {
+        background-color: rgb(144, 238, 144) !important; /* light green */
+       color: #ffffff;
+       }
+
+       .wrong-answer {
+       background-color: rgb(255, 192, 203) !important; /* light red */
+       color: #ffffff;
+       }
+
+
+        .question {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .question p {
+            margin-bottom: 5px;
+        }
+
+        .marks {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: larger;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        #submitAnswers {
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #result p {
+            margin-bottom: 10px;
+        }
+        /* Add hover effects to buttons */
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Add hover effect to links */
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #0056b3;
+}
+
+/* Add hover effect to dashboard button */
+#dashboard-btn:hover::before {
+    content: "🏠"; /* Add a house emoji */
+    margin-right: 5px;
+}
+
+/* Add hover effect to courses button */
+#courses-btn:hover::before {
+    content: "📚"; /* Add a book emoji */
+    margin-right: 5px;
+}
+
+/* Add hover effect to exams button */
+#exams-btn:hover::before {
+    content: "📝"; /* Add a pencil emoji */
+    margin-right: 5px;
+}
+
+/* Add hover effect to results button */
+#results-btn:hover::before {
+    content: "📊"; /* Add a bar chart emoji */
+    margin-right: 5px;
+}
+
+/* Add hover effect to question container */
+.question:hover {
+    background-color: #e9ecef; /* Light grey background on hover */
+    transition: background-color 0.3s ease;
+}
+
+/* Add hover effect to next question button */
+#nextQuestion:hover {
+    background-color: #007bff; /* Dark blue background on hover */
+    border-color: #007bff;
+}
+
+/* Add hover effect to submit answers button */
+#submitAnswers:hover {
+    background-color: #28a745; /* Green background on hover */
+    border-color: #28a745;
+}
+
+/* Add hover effect to options label */
+.options label:hover {
+    color: #007bff; /* Change text color on hover */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+/* Add custom styles to hover effect */
+.options label:hover::before {
+    content: "➜"; /* Add a directional arrow before the option */
+    margin-right: 5px;
+    color: #007bff; /* Change arrow color */
+}
+
+/* Add hover effect to result container */
+#result:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+}
+
+/* Transparent background color for header */
+header {
+    background-color: rgba(0, 123, 255, 0.8); /* Transparent blue */
+    color: #fff;
+    padding: 10px 0;
+}
+
+/* Transparent background color for question container */
+.question {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+/* Transparent background color for result container */
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Transparent background color for button hover */
+.btn-primary:hover {
+    background-color: rgba(0, 123, 255, 0.9); /* Semi-transparent blue */
+    border-color: rgba(0, 123, 255, 0.9); /* Semi-transparent blue */
+}
+
+/* Transparent background color for next question button hover */
+#nextQuestion:hover {
+    background-color: rgba(0, 123, 255, 0.9); /* Semi-transparent blue */
+    border-color: rgba(0, 123, 255, 0.9); /* Semi-transparent blue */
+}
+
+/* Transparent background color for submit answers button hover */
+#submitAnswers:hover {
+    background-color: rgba(40, 167, 69, 0.9); /* Semi-transparent green */
+    border-color: rgba(40, 167, 69, 0.9); /* Semi-transparent green */
+}
     </style>
 </head>
 
@@ -80,137 +285,261 @@
                         <option value="paper3">paper3</option>
                     </select>
                 </div>
-
+                
                 <input type="submit" value="Take Exam" class="btn btn-primary">
             </form>
             <div id="questionsContainer"></div>
+    <!----      <button id="nextQuestion" class="btn btn-primary mt-3">Next Question</button>   --->
             <button id="submitAnswers" class="btn btn-primary mt-3">Submit Answers</button>
             <div id="result"></div>
         </div>
     </main>
 
     <!-- Link Bootstrap JS and jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/exams.js"></script>
+   
     <script>
-        window.onload = function () {
-            let xhr = new XMLHttpRequest();
-            xhr.open('GET', '/question/courses', true);
-            xhr.onload = function () {
-                if (this.status == 200) {
-                    let courses = JSON.parse(this.responseText);
-                    let select = document.getElementById('courses');
-                    select.innerHTML = '<option value="" disabled selected>Select courses</option>';
-                    for (let i = 0; i < courses.length; i++) {
-                        let opt = document.createElement('option');
-                        opt.value = courses[i].course_id;
-                        opt.innerHTML = courses[i].course_name;
-                        select.appendChild(opt);
+         window.onload = function () {
+             let xhr = new XMLHttpRequest();
+             xhr.open('GET', '/question/courses', true);
+             xhr.onload = function () {
+                 if (this.status == 200) {
+                     let courses = JSON.parse(this.responseText);
+                     let select = document.getElementById('courses');
+                     select.innerHTML = '<option value="" disabled selected>Select courses</option>';
+                     for (let i = 0; i < courses.length; i++) {
+                         let opt = document.createElement('option');
+                         opt.value = courses[i].course_id;
+                         opt.innerHTML = courses[i].course_name;
+                         select.appendChild(opt);
+                     }
+                 }
+             }
+             xhr.send();
+         };
+         let all_questions = null
+         document.getElementById('exam-form').addEventListener('submit', function (e) {
+             e.preventDefault();
+ 
+             document.getElementById('exam-form').style.display = "none";
+ 
+             let paper = document.getElementById('paper').value;
+             let course_id = document.getElementById('courses').value;
+ 
+             fetch('/question/exam-questions?paper=' + paper + '&course_id=' + course_id)
+                 .then(response => response.json())
+                 .then(data => {
+                     all_questions = data;
+                     let questionsContainer = document.getElementById('questionsContainer');
+                     questionsContainer.innerHTML = '';
+                     console.log(all_questions.length)
+                     data.forEach(function (question) {
+                         let questionDiv = document.createElement('div');
+                         questionDiv.classList.add('question');
+ 
+                         let questionText = document.createElement('p');
+                         questionText.innerHTML = ` ${question.question_text} <span class="marks">${question.marks} marks:</span>`;
+                         questionDiv.appendChild(questionText);
+ 
+                         let optionsDiv = document.createElement('div');
+                         optionsDiv.classList.add('options');
+                         for (let i = 1; i <= 4; i++) {
+                             let optionLabel = document.createElement('label');
+                             let optionInput = document.createElement('input');
+                             optionInput.type = 'radio';
+                             optionInput.name = 'question' + question.question_id;
+                             optionInput.value = `option${i}`;
+                             optionLabel.appendChild(optionInput);
+                             optionLabel.appendChild(document.createTextNode(question['option' + i]));
+                             optionsDiv.appendChild(optionLabel);
+                         }
+                         questionDiv.appendChild(optionsDiv);
+ 
+                         console.log(question);
+                         questionsContainer.appendChild(questionDiv);
+                     });
+ 
+ 
+                     questionsContainer.style.display = "block";
+ 
+                     document.getElementById('submitAnswers').style.display = "block";
+                 })
+                 .catch(error => console.error('Error:', error));
+         });
+ 
+         const submitElement = document.getElementById('submitAnswers')
+         submitElement.style.display = "none";
+ 
+         submitElement.addEventListener('click', function () {
+             let questions = all_questions?.length;
+             let totalMarks = all_questions.reduce((a, b) => a + (b?.marks || 0), 0);
+             let marksObtained = 0;
+             let correctAnswers = 0;
+             let wrongAnswers = 0;
+ 
+             all_questions.forEach(function (question) {
+         let selectedOption = document.querySelector(`input[name="question${question.question_id}"]:checked`);
+         if (selectedOption) {
+             let selectedValue = selectedOption.value;
+             let correctValue = question.correct_answer;
+             let marks = parseInt(question.marks);
+             if (selectedValue === correctValue) {
+                 marksObtained += marks;
+                 correctAnswers++;
+                 selectedOption.parentNode.classList.add('correct-answer');
+             } else {
+                 wrongAnswers++;
+                 selectedOption.parentNode.classList.add('wrong-answer');
+             }
+             let options = document.querySelectorAll(`input[name="question${question.question_id}"]`);
+             options.forEach(option => {
+                 option.disabled = true;
+                 if (option.value === correctValue) {
+                     option.parentNode.classList.add('correct-answer');
+                 }
+             });
+         }
+       });
+ 
+             let percentage = ((marksObtained / totalMarks) * 100).toFixed(2);
+ 
+             let resultContainer = document.getElementById('result');
+             resultContainer.innerHTML = `<p>Total Questions: ${questions} </p>`;
+             resultContainer.innerHTML += '<p>Total Marks: ' + totalMarks + '</p>';
+             resultContainer.innerHTML += '<p>Marks Obtained: ' + marksObtained + '</p>';
+             resultContainer.innerHTML += '<p>Correct Answers: ' + correctAnswers + '</p>';
+             resultContainer.innerHTML += '<p>Wrong Answers: ' + wrongAnswers + '</p>';
+             resultContainer.innerHTML += '<p>Percentage Score: ' + percentage + '%</p>';
+         });
+ 
+     </script>
+
+<canvas id="correctWrongPieChart" width="200" height="200"></canvas>
+<canvas id="percentagePieChart" width="200" height="200" style="margin-top: -200px; margin-left: 250px;"></canvas>
+
+<script>
+// Function to generate and update the pie chart for correct and wrong answers
+function generateCorrectWrongPieChart(correctAnswers, wrongAnswers) {
+    // Get the canvas element where the pie chart will be drawn
+    let correctWrongPieChartCanvas = document.getElementById('correctWrongPieChart');
+
+    // Create a pie chart data
+    let correctWrongPieChartData = {
+        labels: ['Correct Answers', 'Wrong Answers'],
+        datasets: [{
+            data: [correctAnswers, wrongAnswers],
+            backgroundColor: ['#28a745', '#dc3545'], // Colors for each segment
+            hoverOffset: 10 // Spacing when hovering over segments
+        }]
+    };
+
+    // Create a pie chart
+    let correctWrongPieChart = new Chart(correctWrongPieChartCanvas, {
+        type: 'pie',
+        data: correctWrongPieChartData,
+        options: {
+            responsive: false, // Disable responsive mode to control canvas size
+            maintainAspectRatio: false, // Disable aspect ratio to control canvas size
+            plugins: {
+                datalabels: {
+                    color: 'white', // Set text color to white
+                    formatter: (value, ctx) => {
+                        return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
                     }
+                }
+            },
+            animation: {
+                animateRotate: true, // Enable rotation animation
+                animateScale: true // Enable scale animation
+            }
+        }
+    });
+}
+
+// Function to generate and update the pie chart for the percentage score
+function generatePercentagePieChart(percentage) {
+    // Get the canvas element where the pie chart will be drawn
+    let percentagePieChartCanvas = document.getElementById('percentagePieChart');
+
+    // Create a pie chart data
+    let percentagePieChartData = {
+        labels: ['Percentage Score', 'Remaining Percentage'],
+        datasets: [{
+            data: [percentage, 100 - percentage],
+            backgroundColor: ['#007bff', '#f8f9fa'], // Colors for each segment
+            hoverOffset: 10 // Spacing when hovering over segments
+        }]
+    };
+
+    // Create a pie chart
+    let percentagePieChart = new Chart(percentagePieChartCanvas, {
+        type: 'pie',
+        data: percentagePieChartData,
+        options: {
+            responsive: false, // Disable responsive mode to control canvas size
+            maintainAspectRatio: false, // Disable aspect ratio to control canvas size
+            plugins: {
+                datalabels: {
+                    color: 'white', // Set text color to white
+                    formatter: (value, ctx) => {
+                        return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value + '%';
+                    }
+                }
+            },
+            animation: {
+                animateRotate: true, // Enable rotation animation
+                animateScale: true // Enable scale animation
+            }
+        }
+    });
+}
+
+    // Event listener for the "Submit Answers" button click
+    document.getElementById('submitAnswers').addEventListener('click', function () {
+        let questions = all_questions?.length;
+        let totalMarks = all_questions.reduce((a, b) => a + (b?.marks || 0), 0);
+        let marksObtained = 0;
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+
+        all_questions.forEach(function (question) {
+            let selectedOption = document.querySelector(`input[name="question${question.question_id}"]:checked`);
+            if (selectedOption) {
+                let selectedValue = selectedOption.value;
+                let correctValue = question.correct_answer;
+                let marks = parseInt(question.marks);
+                if (selectedValue === correctValue) {
+                    marksObtained += marks;
+                    correctAnswers++;
+                } else {
+                    wrongAnswers++;
                 }
             }
-            xhr.send();
-        };
-        let all_questions = null
-        document.getElementById('exam-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            document.getElementById('exam-form').style.display = "none";
-
-            let paper = document.getElementById('paper').value;
-            let course_id = document.getElementById('courses').value;
-
-            fetch('/question/exam-questions?paper=' + paper + '&course_id=' + course_id)
-                .then(response => response.json())
-                .then(data => {
-                    all_questions = data;
-                    let questionsContainer = document.getElementById('questionsContainer');
-                    questionsContainer.innerHTML = '';
-                    console.log(all_questions.length)
-                    data.forEach(function (question) {
-                        let questionDiv = document.createElement('div');
-
-                        let questionText = document.createElement('p');
-                        questionText.textContent = question.question_text;
-                        questionDiv.appendChild(questionText);
-
-
-                        // questionDiv.dataset.correctAnswer = question.correct_answer;
-                        questionDiv.dataset.marks = question.marks;
-
-                        // let correctAnswerParagraph = document.createElement('p');
-                        // correctAnswerParagraph.textContent = "Correct Answer: " + question.correct_answer;
-                        // questionDiv.appendChild(correctAnswerParagraph);
-
-                        for (let i = 1; i <= 4; i++) {
-                            let optionLabel = document.createElement('label');
-                            let optionInput = document.createElement('input');
-                            optionInput.type = 'radio';
-                            optionInput.name = 'question' + question.question_id;
-                            optionInput.value = `option${i}`;
-                            optionLabel.appendChild(optionInput);
-                            optionLabel.appendChild(document.createTextNode(question['option' + i]));
-                            questionDiv.appendChild(optionLabel);
-                            questionDiv.appendChild(document.createElement('br'));
-                        }
-                        console.log(question);
-                        questionsContainer.appendChild(questionDiv);
-                    });
-
-
-                    questionsContainer.style.display = "block";
-
-                    document.getElementById('submitAnswers').style.display = "block";
-                })
-                .catch(error => console.error('Error:', error));
         });
 
-        const submitElement = document.getElementById('submitAnswers')
-        submitElement.style.display = "none";
+        let unansweredQuestions = questions - (correctAnswers + wrongAnswers);
+        let percentage = ((marksObtained / totalMarks) * 100).toFixed(2);
 
-        submitElement.addEventListener('click', function () {
-            let questions = all_questions?.length;
-            let totalMarks = all_questions.reduce((a, b) => a + (b?.marks || 0), 0);
-            let marksObtained = 0;
-            let correctAnswers = 0;
-            let wrongAnswers = 0;
+        let resultContainer = document.getElementById('result');
+        resultContainer.innerHTML = `<p>Total Questions: ${questions} </p>`;
+        resultContainer.innerHTML += '<p>Total Marks: ' + totalMarks + '</p>';
+        resultContainer.innerHTML += '<p>Marks Obtained: ' + marksObtained + '</p>';
+        resultContainer.innerHTML += '<p>Correct Answers: ' + correctAnswers + '</p>';
+        resultContainer.innerHTML += '<p>Wrong Answers: ' + wrongAnswers + '</p>';
+        resultContainer.innerHTML += '<p>Percentage Score: ' + percentage + '%</p>';
 
-            all_questions.forEach(function (question) {
-                let selectedOption = document.querySelector(`input[name="question${question.question_id}"]:checked`);
-                if (selectedOption) {
-                    let selectedValue = selectedOption.value;
-                    let correctValue = question.correct_answer;
-                    let marks = parseInt(question.marks);
-                    if (selectedValue === correctValue) {
-                        marksObtained += marks;
-                        correctAnswers++;
-                    } else {
-                        wrongAnswers++;
-                    }
-                    let options = document.querySelectorAll(`input[name="question${question.question_id}"]`);
-                    options.forEach(option => {
-                        option.disabled = true;
-                        if (option.value === correctValue) {
-                            option.parentNode.classList.add('correct-answer');
-                        }
-                    });
-                }
-            });
+        // Generate and update the pie charts based on the exam results
+        generateCorrectWrongPieChart(correctAnswers, wrongAnswers);
+        generatePercentagePieChart(percentage);
+    });
 
-            let percentage = ((marksObtained / totalMarks) * 100).toFixed(2);
+</script>
 
-            let resultContainer = document.getElementById('result');
-            resultContainer.innerHTML = `<p>Total Questions: ${questions} </p>`;
-            resultContainer.innerHTML += '<p>Total Marks: ' + totalMarks + '</p>';
-            resultContainer.innerHTML += '<p>Marks Obtained: ' + marksObtained + '</p>';
-            resultContainer.innerHTML += '<p>Correct Answers: ' + correctAnswers + '</p>';
-            resultContainer.innerHTML += '<p>Wrong Answers: ' + wrongAnswers + '</p>';
-            resultContainer.innerHTML += '<p>Percentage Score: ' + percentage + '%</p>';
-        });
-
-    </script>
 </body>
 
 </html>
