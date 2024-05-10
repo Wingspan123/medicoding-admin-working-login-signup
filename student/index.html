@@ -405,9 +405,7 @@ function shuffleArray(array) {
 <canvas id="percentagePieChart" width="200" height="200" style="margin-top: -200px; margin-left: 250px;"></canvas>
 
 <script>
-// Function to generate and update the pie chart for correct and wrong answers
 function generateCorrectWrongPieChart(correctAnswers, wrongAnswers) {
-    // Get the canvas element where the pie chart will be drawn
     let correctWrongPieChartCanvas = document.getElementById('correctWrongPieChart');
 
     // Create a pie chart data
@@ -415,8 +413,8 @@ function generateCorrectWrongPieChart(correctAnswers, wrongAnswers) {
         labels: ['Correct Answers', 'Wrong Answers'],
         datasets: [{
             data: [correctAnswers, wrongAnswers],
-            backgroundColor: ['#28a745', '#dc3545'], // Colors for each segment
-            hoverOffset: 10 // Spacing when hovering over segments
+            backgroundColor: ['#28a745', '#dc3545'], 
+            hoverOffset: 10 
         }]
     };
 
@@ -425,36 +423,33 @@ function generateCorrectWrongPieChart(correctAnswers, wrongAnswers) {
         type: 'pie',
         data: correctWrongPieChartData,
         options: {
-            responsive: false, // Disable responsive mode to control canvas size
-            maintainAspectRatio: false, // Disable aspect ratio to control canvas size
+            responsive: false, 
+            maintainAspectRatio: false, 
             plugins: {
                 datalabels: {
-                    color: 'white', // Set text color to white
+                    color: 'white', 
                     formatter: (value, ctx) => {
                         return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value;
                     }
                 }
             },
             animation: {
-                animateRotate: true, // Enable rotation animation
-                animateScale: true // Enable scale animation
+                animateRotate: true, 
+                animateScale: true 
             }
         }
     });
 }
 
-// Function to generate and update the pie chart for the percentage score
 function generatePercentagePieChart(percentage) {
-    // Get the canvas element where the pie chart will be drawn
     let percentagePieChartCanvas = document.getElementById('percentagePieChart');
 
-    // Create a pie chart data
     let percentagePieChartData = {
         labels: ['Percentage Score', 'Remaining Percentage'],
         datasets: [{
             data: [percentage, 100 - percentage],
-            backgroundColor: ['#007bff', '#f8f9fa'], // Colors for each segment
-            hoverOffset: 10 // Spacing when hovering over segments
+            backgroundColor: ['#007bff', '#f8f9fa'], 
+            hoverOffset: 10 
         }]
     };
 
@@ -463,25 +458,24 @@ function generatePercentagePieChart(percentage) {
         type: 'pie',
         data: percentagePieChartData,
         options: {
-            responsive: false, // Disable responsive mode to control canvas size
-            maintainAspectRatio: false, // Disable aspect ratio to control canvas size
+            responsive: false, 
+            maintainAspectRatio: false, 
             plugins: {
                 datalabels: {
-                    color: 'white', // Set text color to white
+                    color: 'white', 
                     formatter: (value, ctx) => {
                         return ctx.chart.data.labels[ctx.dataIndex] + ': ' + value + '%';
                     }
                 }
             },
             animation: {
-                animateRotate: true, // Enable rotation animation
-                animateScale: true // Enable scale animation
+                animateRotate: true,
+                animateScale: true
             }
         }
     });
 }
 
-    // Event listener for the "Submit Answers" button click
     document.getElementById('submitAnswers').addEventListener('click', function () {
         let questions = all_questions?.length;
         let totalMarks = all_questions.reduce((a, b) => a + (b?.marks || 0), 0);
@@ -515,7 +509,6 @@ function generatePercentagePieChart(percentage) {
         resultContainer.innerHTML += '<p>Wrong Answers: ' + wrongAnswers + '</p>';
         resultContainer.innerHTML += '<p>Percentage Score: ' + percentage + '%</p>';
 
-        // Generate and update the pie charts based on the exam results
         generateCorrectWrongPieChart(correctAnswers, wrongAnswers);
         generatePercentagePieChart(percentage);
     });
